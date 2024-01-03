@@ -35,30 +35,30 @@ jobs:
         with:
           artifacts: "web-ext-artifacts/*"
           makeLatest: true
-  publish-firefox:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
+  # publish-firefox:
+  #   needs: release
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out Git repository
+  #       uses: actions/checkout@v3
 
-      - name: Set up node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  #     - name: Set up node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18
       
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
+  #     - uses: pnpm/action-setup@v2
+  #       with:
+  #         version: latest
 
-      - name: Install Node.js dependencies
-        run: pnpm install
+  #     - name: Install Node.js dependencies
+  #       run: pnpm install
 
-      - name: Build Extension
-        run: pnpm run build
+  #     - name: Build Extension
+  #       run: pnpm run build
       
-      - name: Publish Extension
-        run: pnpm run publish
-        env:
-          WEB_EXT_API_KEY: ${{secrets.web_ext_api_key}}
-          WEB_EXT_API_SECRET: ${{secrets.web_ext_api_secret}}
+  #     - name: Publish Extension
+  #       run: pnpm run publish
+  #       env:
+  #         WEB_EXT_API_KEY: ${{secrets.web_ext_api_key}}
+  #         WEB_EXT_API_SECRET: ${{secrets.web_ext_api_secret}}
