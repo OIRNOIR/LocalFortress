@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "web-ext run",
-		"lint": "web-ext lint",
-		"build": "rm -r ./web-ext-artifacts && web-ext build"
+    "dev": "web-ext run",
+    "lint": "web-ext lint",
+    "build": "rm -r ./web-ext-artifacts && web-ext build",
+		"publish": "web-ext sign"
   },
   "keywords": [],
   "author": "OIRNOIR",
   "license": "GPL-3.0-or-later",
-	"devDependencies": {
-		"@types/firefox-webext-browser": "^120.0.0"
-	}
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.0",
+    "web-ext": "^7.9.0"
+  }
 }
