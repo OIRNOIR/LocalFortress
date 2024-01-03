@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2,
+	"name": "LocalFortress",
+	"version": "1.0",
+
+	"description": "Protect your privacy by blocking most requests to localhost.",
+
+	"icons": {
+		"48": "icons/icon-48.png"
+	},
+
+	"content_scripts": [
+		{
+			"all_frames": true,
+			"matches": ["<all_urls>"],
+			"js": ["index.js"]
+		}
+	]
+}
