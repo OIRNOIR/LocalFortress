@@ -36,4 +36,4 @@ jobs:
           artifacts: "web-ext-artifacts/*"
           makeLatest: true
       
-      - uses: ./.github/workflows/web-ext-publish.yml
+      - uses: ./.github/workflows/web-ext-publish.yml@v1
