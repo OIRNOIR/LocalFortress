@@ -65,6 +65,11 @@ button.danger:hover {
 	background-color: #e0e0e6;
 }
 
+#whitelist-title {
+	font-size: 15px;
+	margin-top: 10px;
+}
+
 #whitelist {
 	display: flex;
 	flex-wrap: wrap;
