@@ -36,7 +36,7 @@ jobs:
           artifacts: "web-ext-artifacts/*"
           makeLatest: true
   publish-firefox:
-    needs: release
+    name: Publish Firefox Extension
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
