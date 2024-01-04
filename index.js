@@ -8,17 +8,15 @@ let whitelist = [];
  */
 const requestCounts = new Map();
 
-async function getWhitelist() {
-	/**
-	 * @type {String[]}
-	 */
-	const result = await browser.storage.sync.get("whitelist");
-	whitelist = result.whitelist;
+let permissions = false;
+
+async function asyncActions() {
+	const resultOne = await browser.storage.sync.get("whitelist");
+	whitelist = resultOne.whitelist;
 	if (whitelist == null) {
 		whitelist = []
 		await browser.storage.sync.set({"whitelist": whitelist});
 	}
-	console.log(whitelist);
 }
 
 /**
@@ -33,10 +31,8 @@ function determineOriginPermission(details) {
 }
 
 browser.webRequest.onBeforeRequest.addListener(details => {
-	console.log(details);
 	if (["0.0.0.0", "localhost", "::1"].indexOf(new URL(details.url).hostname) != -1 || new URL(details.url).hostname.match(/127\.\d{1,3}\.\d{1,3}\.\d{1,3}/g)?.length > 0) {
 		if (determineOriginPermission(details) == false) {
-			console.log("Cancelled");
 			if (details.tabId != -1) {
 				if (requestCounts.has(details.tabId)) {
 					requestCounts.set(details.tabId, requestCounts.get(details.tabId) + 1);
@@ -45,6 +41,7 @@ browser.webRequest.onBeforeRequest.addListener(details => {
 				}
 			}
 			browser.action.setBadgeText({text: requestCounts.has(details.tabId) ? String(requestCounts.get(details.tabId)) : null, tabId: details.tabId});
+			browser.action.setBadgeBackgroundColor({color: "#5b5b66"});
 			return {
 				cancel: true
 			}
@@ -78,9 +75,11 @@ browser.webRequest.onBeforeRequest.addListener(details => {
 	"blocking"
 ]);
 
-browser.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+	if (!permissions) return;
 	if (changeInfo.status == "loading") requestCounts.delete(tabId);
-	browser.action.setBadgeText({text: ""});
+	await browser.action.setBadgeText({text: ""});
+	await browser.action.setBadgeBackgroundColor({color: "#5b5b66"});
 })
 
 browser.storage.onChanged.addListener((changes, areaName) => {
@@ -89,4 +88,19 @@ browser.storage.onChanged.addListener((changes, areaName) => {
 	}
 })
 
-void getWhitelist();
+void asyncActions();
+
+browser.permissions.contains({origins: ["<all_urls>"]}).then(async status => {
+	if (status) {
+		permissions = true;
+	} else {
+		await browser.action.setBadgeText({text: "!"});
+		await browser.action.setBadgeBackgroundColor({color: "#ffee00"});
+	}
+});
+
+browser.permissions.onAdded.addListener(permissions => {
+	if (permissions.origins.includes("<all_urls>")) {
+		permissions = true;
+	}
+})

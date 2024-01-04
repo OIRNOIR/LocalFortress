@@ -1,20 +1,27 @@
-<head>
-	<link rel="stylesheet" href="style.css">
-</head>
-<body>
-	<div id="content">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
 		<div id="bar">
 			<h1 id="title">LocalFortress</h1>
 			<button id="close" class="secondary"><img src="cross.svg" id="close-icon" width="25px" height="25px"></button>
 		</div>
-		<div id="thissite-container">
-			<button id="toggle-thissite" class="primary">Whitelist This Site</button>
+		<div id="content" class="content">
+			<div id="thissite-container">
+				<button id="toggle-thissite" class="primary">Whitelist This Site</button>
+			</div>
+			<div id="whitelist-title">Whitelisted Hostnames</div>
+			<div id="whitelist"></div>
 		</div>
-		<div id="whitelist-title">Whitelisted Hostnames</div>
-		<div id="whitelist"></div>
-	</div>
-	<footer>
-		&copy; 2024 OIRNOIR  -  <a href="https://github.com/OIRNOIR/LocalFortress">GitHub</a>
-	</footer>
-	<script src="script.js"></script>
-</body>
+		<div id="permissions-needed" class="content">
+			<p>This extension needs permissions to access your data across all websites to be able to block requests. Your data is yours and we don't collect it.</p>
+			<button id="reqperms" class="primary">Authorize Permissions</button>
+		</div>
+		<footer>
+			&copy; 2024 OIRNOIR  -  <a href="https://github.com/OIRNOIR/LocalFortress">GitHub</a>
+		</footer>
+		<script src="script.js"></script>
+	</body>
+</html>

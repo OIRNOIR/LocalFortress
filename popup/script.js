@@ -1,7 +1,7 @@
-async function main() {
-	const close = document.getElementById("close");
-	close.addEventListener("click", () => window.close());
+const closeButton = document.getElementById("close");
+closeButton.addEventListener("click", () => window.close());
 
+async function main() {
 	const thissite = document.getElementById("toggle-thissite");
 	const whiltelistView = document.getElementById("whitelist");
 	const res = await browser.storage.sync.get("whitelist");
@@ -16,7 +16,6 @@ async function main() {
 		}
 	})
 	const currentTabs = await browser.tabs.query({active: true});
-	console.log(currentTabs);
 	if (new URL(currentTabs[0].url).hostname == "") {
 		thissite.style.display = "none";
 	} else {
@@ -68,4 +67,22 @@ async function main() {
 	}
 	refreshWhitelistView();
 }
-void main();
+
+browser.permissions.contains({origins: ["<all_urls>"]}).then(async status => {
+	if (status) {
+		await main();
+	} else {
+		document.getElementById("content").style.display = "none";
+		document.getElementById("permissions-needed").style.display = "block";
+		document.getElementById("reqperms").addEventListener("click", async () => {
+			const result = await browser.permissions.request({origins: ["<all_urls>"]});
+			if (result) {
+				document.getElementById("content").style.display = "block";
+				document.getElementById("permissions-needed").style.display = "none";
+				await browser.action.setBadgeText({text: ""});
+				await browser.action.setBadgeBackgroundColor("#5b5b66");
+				await main();
+			}
+		});
+	}
+});
