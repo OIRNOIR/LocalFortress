@@ -80,7 +80,7 @@ browser.permissions.contains({origins: ["<all_urls>"]}).then(async status => {
 				document.getElementById("content").style.display = "block";
 				document.getElementById("permissions-needed").style.display = "none";
 				await browser.action.setBadgeText({text: ""});
-				await browser.action.setBadgeBackgroundColor("#5b5b66");
+				await browser.action.setBadgeBackgroundColor({color: "#5b5b66"});
 				await main();
 			}
 		});
