@@ -25,9 +25,6 @@ jobs:
 
       - name: Install Node.js dependencies
         run: pnpm install
-
-      - name: Build Extension
-        run: pnpm run build
       
       - name: Publish Extension
         run: pnpm run publish
