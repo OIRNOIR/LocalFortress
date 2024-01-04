@@ -27,7 +27,7 @@ jobs:
         run: pnpm install
       
       - name: Publish Extension
-        run: pnpm run publish
+        run: pnpm run pnpm run publish:worker
         env:
           WEB_EXT_API_KEY: ${{secrets.web_ext_api_key}}
           WEB_EXT_API_SECRET: ${{secrets.web_ext_api_secret}}

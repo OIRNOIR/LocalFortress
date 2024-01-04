@@ -8,13 +8,15 @@
     "dev": "web-ext run",
     "lint": "web-ext lint",
     "build": "web-ext build -o",
-		"publish": "web-ext sign"
+    "publish": "dotenv web-ext sign",
+    "publish:worker": "web-ext sign"
   },
   "keywords": [],
   "author": "OIRNOIR",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "@types/firefox-webext-browser": "^120.0.0",
+    "dotenv-cli": "^7.3.0",
     "web-ext": "^7.9.0"
   }
 }
