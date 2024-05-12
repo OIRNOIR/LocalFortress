@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "LocalFortress",
-	"version": "1.0.3",
+	"version": "1.0.4",
 
 	"description": "Protect your privacy by blocking most requests to localhost.",
 
@@ -14,16 +14,9 @@
 		"scripts": ["index.js"]
 	},
 
-	"permissions": [
-		"storage",
-		"tabs",
-		"webRequest",
-		"webRequestBlocking"
-	],
+	"permissions": ["storage", "tabs", "webRequest", "webRequestBlocking"],
 
-	"host_permissions": [
-		"<all_urls>"
-	],
+	"host_permissions": ["<all_urls>"],
 
 	"action": {
 		"default_icon": "icons/icon-32.png",

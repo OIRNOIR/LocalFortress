@@ -1,6 +1,6 @@
 {
   "name": "local-fortress",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,14 +9,17 @@
     "lint": "web-ext lint",
     "build": "web-ext build -o",
     "publish": "dotenv web-ext sign",
-    "publish:worker": "web-ext sign"
+    "publish:worker": "web-ext sign",
+		"biome-lint": "biome check . --apply"
   },
   "keywords": [],
   "author": "OIRNOIR",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "@types/firefox-webext-browser": "^120.0.0",
-    "dotenv-cli": "^7.3.0",
-    "web-ext": "^7.9.0"
-  }
+    "@biomejs/biome": "^1.7.3",
+    "@types/firefox-webext-browser": "^120.0.3",
+    "dotenv-cli": "^7.4.2",
+    "web-ext": "^7.11.0"
+  },
+  "packageManager": "pnpm@9.1.0+sha512.67f5879916a9293e5cf059c23853d571beaf4f753c707f40cb22bed5fb1578c6aad3b6c4107ccb3ba0b35be003eb621a16471ac836c87beb53f9d54bb4612724"
 }
