@@ -1,3 +1,5 @@
+# This extension has been DISCONTINUED because uBlock Origin's "Privacy/Block Outsider Intrusion into LAN" rule is much more effective. You should switch to that.
+
 # LocalFortress
 
 This extension blocks requests to localhost from websites that are not running on localhost. You can whitelist individual sites to be exempt from this.
